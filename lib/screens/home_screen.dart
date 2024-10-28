@@ -34,9 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontWeight: FontWeight.w400,
               ),
             ),
-            ListView.builder(
-              itemBuilder: (context, index) {},
-            ),
+            
           ],
         ),
       ),

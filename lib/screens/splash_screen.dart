@@ -1,7 +1,6 @@
 import 'package:desafio_quarkus/constants.dart';
-import 'package:desafio_quarkus/screens/home_screen.dart';
+import 'package:desafio_quarkus/screens/auth_or_home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,21 +14,13 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     Future.delayed(
       const Duration(seconds: 5),
       () {
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const HomeScreen()));
+            MaterialPageRoute(builder: (_) => const AuthOrHomeScreen()));
       },
     );
-  }
-
-  @override
-  void dispose() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: SystemUiOverlay.values);
-    super.dispose();
   }
 
   @override
@@ -46,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen>
             "To do List\nQuality Desafio",
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 30),
-          )
+          ),
         ],
       ),
     );
