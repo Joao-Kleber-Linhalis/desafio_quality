@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen>
             fit: BoxFit.contain,
           ),
           const Text(
-            "To do List\nQuarkus Desafio",
+            "To do List\nQuality Desafio",
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 30),
           )
