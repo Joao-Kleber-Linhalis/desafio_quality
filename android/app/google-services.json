@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "857806984296",
+    "project_id": "desafio-quality",
+    "storage_bucket": "desafio-quality.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857806984296:android:53f9be790d3e030b2697dd",
+        "android_client_info": {
+          "package_name": "com.joaokleber.desafio_quality"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtTyp0yLM3hdWjWzy4etSsOENauJcUX0k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

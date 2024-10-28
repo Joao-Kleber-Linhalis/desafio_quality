@@ -28,11 +28,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const Text(
-              "Afazeres",
+              "Tarefas",
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.w400,
               ),
+            ),
+            ListView.builder(
+              itemBuilder: (context, index) {},
             ),
           ],
         ),
