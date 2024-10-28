@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
             iconTheme: const IconThemeData(color: Pallete.white),
             appBarTheme: const AppBarTheme(
-              backgroundColor: Pallete.black,
+              backgroundColor: Pallete.backgroundColor,
             )),
         home: const SplashScreen(),
       ),

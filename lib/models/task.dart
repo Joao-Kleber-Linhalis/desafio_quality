@@ -1,4 +1,7 @@
 import 'package:desafio_quarkus/models/base/base_model.dart';
+import 'package:desafio_quarkus/service/firebase_service.dart';
+import 'package:desafio_quarkus/shared/collections_name.dart';
+import 'package:desafio_quarkus/shared/tools.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -15,7 +18,7 @@ class Task extends BaseModel<Task> with ChangeNotifier {
     required this.taskText,
     required this.userId,
     this.date,
-    this.place,
+    this.place = "",
     this.isDone = false,
   });
 
@@ -34,7 +37,7 @@ class Task extends BaseModel<Task> with ChangeNotifier {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       "id": id,
-      "userId" : userId,
+      "userId": userId,
       "taskText": taskText,
       "date": date != null ? Timestamp.fromDate(date!) : null,
       "place": place,
@@ -50,7 +53,7 @@ class Task extends BaseModel<Task> with ChangeNotifier {
     return Task(
       id: map["id"] ?? "",
       userId: map["userId"],
-      date: map["date"],
+      date: map['date'] != null ? Tools.toDate(map['date']) : null,
       place: map["place"] ?? "",
       isDone: map["isDone"],
       taskText: map["taskText"],
@@ -62,11 +65,32 @@ class Task extends BaseModel<Task> with ChangeNotifier {
     notifyListeners();
   }
 
+  bool hasSubtitle() {
+    if (date != null || (place != null && place!.trim().isNotEmpty)) {
+      return true;
+    }
+    return false;
+  }
+
+  String subtitle() {
+    String subtitle = "";
+    if (date != null) {
+      subtitle = Tools.formatDateToString(date!);
+    }
+    if (place != null && place!.trim().isNotEmpty) {
+      if (subtitle.isNotEmpty) {
+        subtitle += " - ";
+      }
+      subtitle += place!;
+    }
+    return subtitle;
+  }
+
   Future<void> toggleDone() async {
     try {
       _toggleDone();
-
-      //firebase update code
+      FirebaseService.update(
+          collection: CollectionsName.taskCollection, id: id!, data: this);
     } catch (_) {
       _toggleDone();
     }

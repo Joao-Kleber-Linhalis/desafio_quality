@@ -26,7 +26,7 @@ class SearchBarComponent extends StatelessWidget {
         RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius), //Borda
             side: const BorderSide(
-              color: Pallete.gray10,
+              color: Pallete.black,
               width: 1,
             )),
       ),
@@ -45,6 +45,7 @@ class SearchBarComponent extends StatelessWidget {
         TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w400,
+          color: Pallete.black
         ),
       ),
     );
