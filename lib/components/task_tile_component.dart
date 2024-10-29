@@ -1,4 +1,5 @@
 import 'package:add_2_calendar/add_2_calendar.dart';
+import 'package:desafio_quality/components/task_form_component.dart';
 import 'package:desafio_quality/constants.dart';
 import 'package:desafio_quality/models/task.dart';
 import 'package:desafio_quality/models/task_list.dart';
@@ -38,6 +39,18 @@ class _TaskTileComponentState extends State<TaskTileComponent> {
           duration: const Duration(seconds: 10),
         ));
       }
+    }
+
+    _taskFormModal(BuildContext context) {
+      showModalBottomSheet(
+        backgroundColor: Pallete.backgroundColor,
+        context: context,
+        builder: (_) {
+          return TaskFormComponent(
+            task: widget.task,
+          );
+        },
+      );
     }
 
     return Padding(
@@ -87,14 +100,29 @@ class _TaskTileComponentState extends State<TaskTileComponent> {
           child: Row(
             mainAxisSize: MainAxisSize.min, // ajusta o tamanho do Row
             children: [
-              // Botão de exclusão
-
+              Container(
+                height: 35,
+                width: 35,
+                decoration: BoxDecoration(
+                  color: Pallete.blue,
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: IconButton(
+                  color: Pallete.white,
+                  iconSize: 18,
+                  onPressed: () {
+                    _taskFormModal(context);
+                  },
+                  icon: const Icon(Icons.edit),
+                ),
+              ),
+              const SizedBox(width: 8),
               // Botão para adicionar ao calendário
               Container(
                 height: 35,
                 width: 35,
                 decoration: BoxDecoration(
-                  color: Pallete.green, // Escolha uma cor para o botão
+                  color: Pallete.green,
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: IconButton(
@@ -103,10 +131,10 @@ class _TaskTileComponentState extends State<TaskTileComponent> {
                   onPressed: () async {
                     await _addEventToCalendar();
                   },
-                  icon: const Icon(Icons.edit_calendar),
+                  icon: const Icon(Icons.calendar_month_rounded),
                 ),
               ),
-              const SizedBox(width: 8), // Espaçamento entre os botões
+              const SizedBox(width: 8),
               Container(
                 height: 35,
                 width: 35,

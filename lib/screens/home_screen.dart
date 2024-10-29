@@ -47,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   _taskFormModal(BuildContext context) {
     showModalBottomSheet(
+      backgroundColor: Pallete.backgroundColor,
       context: context,
       builder: (_) {
         return const TaskFormComponent();

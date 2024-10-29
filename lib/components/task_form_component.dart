@@ -8,13 +8,24 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class TaskFormComponent extends StatefulWidget {
-  const TaskFormComponent({super.key});
+  final Task? task;
+  const TaskFormComponent({super.key, this.task});
 
   @override
   State<TaskFormComponent> createState() => _TaskFormComponentState();
 }
 
 class _TaskFormComponentState extends State<TaskFormComponent> {
+  @override
+  void initState() {
+    super.initState();
+    if (widget.task != null) {
+      _selectedDate = widget.task!.date;
+      _controlTaskPlace.text = widget.task!.place ?? "";
+      _controlTaskText.text = widget.task!.taskText;
+    }
+  }
+
   //Controladores de texto gamers
   final _controlTaskText = TextEditingController();
   final _controlTaskPlace = TextEditingController();
@@ -31,14 +42,23 @@ class _TaskFormComponentState extends State<TaskFormComponent> {
     });
     final taskText = _controlTaskText.text;
     final taskPlace = _controlTaskPlace.text;
-
+    Task task;
     if (taskText.isNotEmpty) {
-      final task = Task(
+      if (widget.task == null) {
+        task = Task(
           taskText: taskText,
           userId: Provider.of<Auth>(context, listen: false).userId!,
           date: _selectedDate,
-          place: taskPlace);
-      await Provider.of<TaskList>(context, listen: false).addTask(task);
+          place: taskPlace,
+        );
+      } else {
+        task = widget.task!.copyWith(
+          taskText: taskText,
+          date: _selectedDate,
+          place: taskPlace,
+        );
+      }
+      await Provider.of<TaskList>(context, listen: false).addOrUpdateTask(task);
       _controlTaskText.clear();
       _controlTaskPlace.clear();
       Navigator.of(context).pop();
@@ -140,9 +160,9 @@ class _TaskFormComponentState extends State<TaskFormComponent> {
                   ),
                   child: isLaoding
                       ? const CircularProgressIndicator()
-                      : const Text(
-                          "Nova Tarefa",
-                          style: TextStyle(
+                      : Text(
+                          widget.task != null ? "Editar Tarefa" : "Nova Tarefa",
+                          style: const TextStyle(
                             color: Pallete.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 15,

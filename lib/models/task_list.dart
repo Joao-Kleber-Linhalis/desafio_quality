@@ -81,18 +81,26 @@ class TaskList with ChangeNotifier {
     }
   }
 
-  Future<void> addTask(Task task) async {
+  Future<void> addOrUpdateTask(Task task) async {
     try {
-      String id = await FirebaseService.insert(
-        data: task,
-        collection: CollectionsName.taskCollection,
-      );
-      final taskWithId = task.copyWith(id: id);
-      await FirebaseService.update(
-        collection: CollectionsName.taskCollection,
-        id: taskWithId.id!,
-        data: taskWithId,
-      );
+      if (task.id!.isEmpty) {
+        String id = await FirebaseService.insert(
+          data: task,
+          collection: CollectionsName.taskCollection,
+        );
+        final taskWithId = task.copyWith(id: id);
+        await FirebaseService.update(
+          collection: CollectionsName.taskCollection,
+          id: taskWithId.id!,
+          data: taskWithId,
+        );
+      } else {
+        await FirebaseService.update(
+          collection: CollectionsName.taskCollection,
+          id: task.id!,
+          data: task,
+        );
+      }
       await loadTasks();
       notifyListeners();
     } catch (e) {

@@ -14,7 +14,7 @@ class Task extends BaseModel<Task> with ChangeNotifier {
   bool isDone;
 
   Task({
-    this.id,
+    this.id = "",
     required this.taskText,
     required this.userId,
     this.date,
