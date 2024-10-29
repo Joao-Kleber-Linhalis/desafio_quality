@@ -2,7 +2,7 @@
 
 <h1 align="center">:computer: Sobre o Projeto</h1>
 <p align="center">Este projeto é uma aplicação de lista de tarefas (To-Do List) desenvolvida no contexto de um desafio prático para uma vaga de Desenvolvedor Mobile pela empresa 
-<a href="https://www.linkedin.com/company/quality-automacao/?originalSubdomain=br">Quality Automoção</a>.A aplicação permite criar, remover e visualizar tarefas, oferecendo ainda a opção de adicioná-las ao calendário do dispositivo.</p>
+<a href="https://www.linkedin.com/company/quality-automacao/?originalSubdomain=br">Quality Automoção</a>.A aplicação permite criar, editar, remover e visualizar tarefas, oferecendo ainda a opção de adicioná-las ao calendário do dispositivo.</p>
 
 <h1 align="center">:sparkles: Tecnologias</h1>
 <p align="center">Esse projeto foi desenvolvido com:</p>
