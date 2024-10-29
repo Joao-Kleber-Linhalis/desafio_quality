@@ -1,6 +1,6 @@
-import 'package:desafio_quarkus/models/auth.dart';
-import 'package:desafio_quarkus/screens/auth_screen.dart';
-import 'package:desafio_quarkus/screens/home_screen.dart';
+import 'package:desafio_quality/models/auth.dart';
+import 'package:desafio_quality/screens/auth_screen.dart';
+import 'package:desafio_quality/screens/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

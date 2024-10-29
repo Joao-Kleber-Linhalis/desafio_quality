@@ -1,8 +1,8 @@
-import 'package:desafio_quarkus/models/base/base_model.dart';
-import 'package:desafio_quarkus/models/task_list.dart';
-import 'package:desafio_quarkus/service/firebase_service.dart';
-import 'package:desafio_quarkus/shared/collections_name.dart';
-import 'package:desafio_quarkus/shared/tools.dart';
+import 'package:desafio_quality/models/base/base_model.dart';
+import 'package:desafio_quality/models/task_list.dart';
+import 'package:desafio_quality/service/firebase_service.dart';
+import 'package:desafio_quality/shared/collections_name.dart';
+import 'package:desafio_quality/shared/tools.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';

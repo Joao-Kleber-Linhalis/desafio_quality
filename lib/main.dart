@@ -1,8 +1,8 @@
-import 'package:desafio_quarkus/constants.dart';
-import 'package:desafio_quarkus/firebase_options.dart';
-import 'package:desafio_quarkus/models/auth.dart';
-import 'package:desafio_quarkus/models/task_list.dart';
-import 'package:desafio_quarkus/screens/splash_screen.dart';
+import 'package:desafio_quality/constants.dart';
+import 'package:desafio_quality/firebase_options.dart';
+import 'package:desafio_quality/models/auth.dart';
+import 'package:desafio_quality/models/task_list.dart';
+import 'package:desafio_quality/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

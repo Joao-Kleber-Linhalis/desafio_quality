@@ -1,4 +1,4 @@
-import 'package:desafio_quarkus/constants.dart';
+import 'package:desafio_quality/constants.dart';
 import 'package:flutter/material.dart';
 
 class SearchBarComponent extends StatelessWidget {

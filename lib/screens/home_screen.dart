@@ -1,9 +1,9 @@
-import 'package:desafio_quarkus/components/search_bar_component.dart';
-import 'package:desafio_quarkus/components/task_form_component.dart';
-import 'package:desafio_quarkus/components/task_list_component.dart';
-import 'package:desafio_quarkus/constants.dart';
-import 'package:desafio_quarkus/models/auth.dart';
-import 'package:desafio_quarkus/models/task_list.dart';
+import 'package:desafio_quality/components/search_bar_component.dart';
+import 'package:desafio_quality/components/task_form_component.dart';
+import 'package:desafio_quality/components/task_list_component.dart';
+import 'package:desafio_quality/constants.dart';
+import 'package:desafio_quality/models/auth.dart';
+import 'package:desafio_quality/models/task_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:floating_action_bubble/floating_action_bubble.dart';

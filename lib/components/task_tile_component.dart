@@ -1,6 +1,7 @@
-import 'package:desafio_quarkus/constants.dart';
-import 'package:desafio_quarkus/models/task.dart';
-import 'package:desafio_quarkus/models/task_list.dart';
+import 'package:add_2_calendar/add_2_calendar.dart';
+import 'package:desafio_quality/constants.dart';
+import 'package:desafio_quality/models/task.dart';
+import 'package:desafio_quality/models/task_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +17,18 @@ class _TaskTileComponentState extends State<TaskTileComponent> {
   @override
   Widget build(BuildContext context) {
     final msg = ScaffoldMessenger.of(context);
-    void _deleteProduct() async {
+
+    Future<void> _addEventToCalendar() async {
+      final event = Event(
+        title: widget.task.taskText,
+        startDate: widget.task.date ?? DateTime.now(),
+        endDate: widget.task.date ?? DateTime.now(),
+        location: widget.task.place,
+      );
+      await Add2Calendar.addEvent2Cal(event);
+    }
+
+    Future<void> _deleteProduct() async {
       try {
         await Provider.of<TaskList>(context, listen: false)
             .deleteTask(widget.task);
@@ -31,8 +43,8 @@ class _TaskTileComponentState extends State<TaskTileComponent> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: ListTile(
-        onTap: () {
-          widget.task.toggleDone();
+        onTap: () async {
+          await widget.task.toggleDone();
           setState(() {});
         },
         shape: RoundedRectangleBorder(
@@ -72,21 +84,46 @@ class _TaskTileComponentState extends State<TaskTileComponent> {
         trailing: Container(
           padding: const EdgeInsets.all(0),
           margin: const EdgeInsets.symmetric(vertical: 12),
-          height: 35,
-          width: 35,
-          decoration: BoxDecoration(
-            color: Pallete.red,
-            borderRadius: BorderRadius.circular(5),
-          ),
-          child: IconButton(
-            color: Pallete.white,
-            iconSize: 18,
-            onPressed: () {
-              _deleteProduct();
-            },
-            icon: const Icon(
-              Icons.delete,
-            ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min, // ajusta o tamanho do Row
+            children: [
+              // Botão de exclusão
+
+              // Botão para adicionar ao calendário
+              Container(
+                height: 35,
+                width: 35,
+                decoration: BoxDecoration(
+                  color: Pallete.green, // Escolha uma cor para o botão
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: IconButton(
+                  color: Pallete.white,
+                  iconSize: 18,
+                  onPressed: () async {
+                    await _addEventToCalendar();
+                  },
+                  icon: const Icon(Icons.edit_calendar),
+                ),
+              ),
+              const SizedBox(width: 8), // Espaçamento entre os botões
+              Container(
+                height: 35,
+                width: 35,
+                decoration: BoxDecoration(
+                  color: Pallete.red,
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: IconButton(
+                  color: Pallete.white,
+                  iconSize: 18,
+                  onPressed: () async {
+                    await _deleteProduct();
+                  },
+                  icon: const Icon(Icons.delete),
+                ),
+              ),
+            ],
           ),
         ),
       ),

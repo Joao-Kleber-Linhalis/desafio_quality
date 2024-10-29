@@ -1,4 +1,4 @@
-name: desafio_quarkus
+name: desafio_quality
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -43,6 +43,7 @@ dependencies:
   floating_action_bubble: ^1.1.4
   flutter_localizations:
     sdk: flutter
+  add_2_calendar: ^3.0.1
 
 dev_dependencies:
   flutter_test:

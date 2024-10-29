@@ -1,10 +1,10 @@
-import 'package:desafio_quarkus/constants.dart';
+import 'package:desafio_quality/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:desafio_quarkus/exceptions/auth_exception.dart';
-import 'package:desafio_quarkus/models/auth.dart';
+import 'package:desafio_quality/exceptions/auth_exception.dart';
+import 'package:desafio_quality/models/auth.dart';
 
 enum AuthMode { Signup, Login }
 

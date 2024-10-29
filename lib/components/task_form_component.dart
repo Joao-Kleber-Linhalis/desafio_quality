@@ -1,9 +1,9 @@
-import 'package:desafio_quarkus/components/form_field_component.dart';
-import 'package:desafio_quarkus/constants.dart';
-import 'package:desafio_quarkus/models/auth.dart';
-import 'package:desafio_quarkus/models/task.dart';
-import 'package:desafio_quarkus/models/task_list.dart';
-import 'package:desafio_quarkus/shared/tools.dart';
+import 'package:desafio_quality/components/form_field_component.dart';
+import 'package:desafio_quality/constants.dart';
+import 'package:desafio_quality/models/auth.dart';
+import 'package:desafio_quality/models/task.dart';
+import 'package:desafio_quality/models/task_list.dart';
+import 'package:desafio_quality/shared/tools.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

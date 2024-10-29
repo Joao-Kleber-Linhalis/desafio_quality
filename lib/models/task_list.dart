@@ -1,7 +1,7 @@
-import 'package:desafio_quarkus/models/task.dart';
-import 'package:desafio_quarkus/service/firebase_service.dart';
-import 'package:desafio_quarkus/shared/collections_name.dart';
-import 'package:desafio_quarkus/shared/tools.dart';
+import 'package:desafio_quality/models/task.dart';
+import 'package:desafio_quality/service/firebase_service.dart';
+import 'package:desafio_quality/shared/collections_name.dart';
+import 'package:desafio_quality/shared/tools.dart';
 import 'package:flutter/material.dart';
 
 class TaskList with ChangeNotifier {

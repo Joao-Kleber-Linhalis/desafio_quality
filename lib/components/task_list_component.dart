@@ -1,7 +1,7 @@
-import 'package:desafio_quarkus/components/task_tile_component.dart';
-import 'package:desafio_quarkus/constants.dart';
-import 'package:desafio_quarkus/models/task.dart';
-import 'package:desafio_quarkus/models/task_list.dart';
+import 'package:desafio_quality/components/task_tile_component.dart';
+import 'package:desafio_quality/constants.dart';
+import 'package:desafio_quality/models/task.dart';
+import 'package:desafio_quality/models/task_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

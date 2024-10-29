@@ -1,4 +1,4 @@
-# desafio_quarkus
+# desafio_quality
 
 A new Flutter project.
 

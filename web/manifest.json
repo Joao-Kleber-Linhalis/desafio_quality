@@ -1,6 +1,6 @@
 {
-    "name": "desafio_quarkus",
-    "short_name": "desafio_quarkus",
+    "name": "desafio_quality",
+    "short_name": "desafio_quality",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

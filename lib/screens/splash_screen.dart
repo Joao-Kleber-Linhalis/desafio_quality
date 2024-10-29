@@ -1,5 +1,5 @@
-import 'package:desafio_quarkus/constants.dart';
-import 'package:desafio_quarkus/screens/auth_or_home_screen.dart';
+import 'package:desafio_quality/constants.dart';
+import 'package:desafio_quality/screens/auth_or_home_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:desafio_quarkus/models/base/base_model.dart';
+import 'package:desafio_quality/models/base/base_model.dart';
 
 class FirebaseService {
   FirebaseService._();
