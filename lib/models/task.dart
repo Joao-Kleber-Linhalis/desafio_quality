@@ -1,11 +1,9 @@
 import 'package:desafio_quality/models/base/base_model.dart';
-import 'package:desafio_quality/models/task_list.dart';
 import 'package:desafio_quality/service/firebase_service.dart';
 import 'package:desafio_quality/shared/collections_name.dart';
 import 'package:desafio_quality/shared/tools.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
 
 class Task extends BaseModel<Task> with ChangeNotifier {
   final String? id;
