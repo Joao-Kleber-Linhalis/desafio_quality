@@ -1,9 +1,11 @@
 import 'package:desafio_quarkus/models/base/base_model.dart';
+import 'package:desafio_quarkus/models/task_list.dart';
 import 'package:desafio_quarkus/service/firebase_service.dart';
 import 'package:desafio_quarkus/shared/collections_name.dart';
 import 'package:desafio_quarkus/shared/tools.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 
 class Task extends BaseModel<Task> with ChangeNotifier {
   final String? id;
@@ -30,6 +32,24 @@ class Task extends BaseModel<Task> with ChangeNotifier {
       place: "",
       isDone: false,
       taskText: "",
+    );
+  }
+
+  Task copyWith({
+    String? id,
+    String? taskText,
+    DateTime? date,
+    String? place,
+    String? userId,
+    bool? isDone,
+  }) {
+    return Task(
+      id: id ?? this.id,
+      taskText: taskText ?? this.taskText,
+      place: place ?? this.place,
+      userId: userId ?? this.userId,
+      date: date ?? this.date,
+      isDone: isDone ?? this.isDone,
     );
   }
 
@@ -89,7 +109,7 @@ class Task extends BaseModel<Task> with ChangeNotifier {
   Future<void> toggleDone() async {
     try {
       _toggleDone();
-      FirebaseService.update(
+      await FirebaseService.update(
           collection: CollectionsName.taskCollection, id: id!, data: this);
     } catch (_) {
       _toggleDone();

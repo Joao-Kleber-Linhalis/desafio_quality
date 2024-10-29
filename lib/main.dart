@@ -6,6 +6,7 @@ import 'package:desafio_quarkus/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +38,12 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [Locale('pt', 'BR')],
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             primaryTextTheme: Typography().white,

@@ -67,7 +67,7 @@ class TaskList with ChangeNotifier {
     if (index >= 0) {
       try {
         final task = _tasks[index];
-        FirebaseService.delete(
+        await FirebaseService.delete(
           collection: CollectionsName.taskCollection,
           id: task.id!,
         );
@@ -78,6 +78,25 @@ class TaskList with ChangeNotifier {
         _tasks.insert(index, task);
         notifyListeners();
       }
+    }
+  }
+
+  Future<void> addTask(Task task) async {
+    try {
+      String id = await FirebaseService.insert(
+        data: task,
+        collection: CollectionsName.taskCollection,
+      );
+      final taskWithId = task.copyWith(id: id);
+      await FirebaseService.update(
+        collection: CollectionsName.taskCollection,
+        id: taskWithId.id!,
+        data: taskWithId,
+      );
+      await loadTasks();
+      notifyListeners();
+    } catch (e) {
+      print(e);
     }
   }
 }

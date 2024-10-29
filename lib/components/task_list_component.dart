@@ -26,10 +26,10 @@ class TaskListComponent extends StatelessWidget {
                 ImagesPath.noTasksImage,
                 fit: BoxFit.contain,
               ),
-              const Text(
-                "Sem Tarefas\nTente cadastrar uma nova!",
+              Text(
+                "Sem tarefas ${status.toLowerCase()}",
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w400,
                 ),

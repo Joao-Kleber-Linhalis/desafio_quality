@@ -1,9 +1,12 @@
 import 'package:desafio_quarkus/components/search_bar_component.dart';
+import 'package:desafio_quarkus/components/task_form_component.dart';
 import 'package:desafio_quarkus/components/task_list_component.dart';
 import 'package:desafio_quarkus/constants.dart';
+import 'package:desafio_quarkus/models/auth.dart';
 import 'package:desafio_quarkus/models/task_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:floating_action_bubble/floating_action_bubble.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,10 +15,14 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
   TextEditingController textEditingController = TextEditingController();
   String statusFilter = "Todas";
   bool _isLoading = true;
+  late Animation<double> _animation;
+  late AnimationController _animationController;
+  bool isMenuOpen = false;
 
   @override
   void initState() {
@@ -28,26 +35,47 @@ class _HomeScreenState extends State<HomeScreen> {
         _isLoading = false;
       });
     });
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 260),
+    );
+
+    final curvedAnimation =
+        CurvedAnimation(curve: Curves.easeInOut, parent: _animationController);
+    _animation = Tween<double>(begin: 0, end: 1).animate(curvedAnimation);
+  }
+
+  _taskFormModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (_) {
+        return const TaskFormComponent();
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(
-          "Desafio Quality",
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.w400,
-            color: Pallete.white,
+        title: const Padding(
+          padding: EdgeInsets.only(top: 20.0),
+          child: Text(
+            "Desafio Quality",
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w400,
+              color: Pallete.white,
+            ),
           ),
         ),
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -79,8 +107,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       _buildTaskStatus(status: 'Todas'),
-                      _buildTaskStatus(status: 'Completas'),
                       _buildTaskStatus(status: 'Não Feitas'),
+                      _buildTaskStatus(status: 'Completas'),
                     ],
                   ),
                   const SizedBox(
@@ -95,6 +123,57 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 16.0),
+        child: FloatingActionBubble(
+          items: <Bubble>[
+            Bubble(
+              icon: Icons.add,
+              iconColor: Pallete.white,
+              title: "Adicionar",
+              titleStyle: const TextStyle(
+                fontSize: 18,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+              bubbleColor: Pallete.orange,
+              onPress: () => _taskFormModal(context),
+            ),
+            Bubble(
+              icon: Icons.exit_to_app,
+              iconColor: Pallete.white,
+              title: "Deslogar",
+              titleStyle: const TextStyle(
+                fontSize: 18,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+              bubbleColor: Pallete.orange,
+              onPress: () async {
+                await Provider.of<Auth>(context, listen: false).logout();
+              },
+            ),
+          ],
+          // animation controller
+          animation: _animation,
+
+          // Onpress abre o menu do bubble
+          onPress: () {
+            _animationController.isCompleted
+                ? _animationController.reverse()
+                : _animationController.forward();
+            setState(() {
+              isMenuOpen = !isMenuOpen;
+            });
+          },
+
+          iconColor: Pallete.white,
+
+          iconData: isMenuOpen ? Icons.close : Icons.menu,
+          backGroundColor: Pallete.orange,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
 

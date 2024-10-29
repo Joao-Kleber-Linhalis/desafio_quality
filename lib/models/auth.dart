@@ -16,9 +16,11 @@ class Auth with ChangeNotifier {
       String email, String password, bool isLogin) async {
     try {
       if (isLogin) {
-        _auth.signInWithEmailAndPassword(email: email, password: password);
+        await _auth.signInWithEmailAndPassword(
+            email: email, password: password);
       } else {
-        _auth.createUserWithEmailAndPassword(email: email, password: password);
+        await _auth.createUserWithEmailAndPassword(
+            email: email, password: password);
       }
       notifyListeners();
     } catch (e) {
@@ -31,11 +33,11 @@ class Auth with ChangeNotifier {
   }
 
   Future<void> signup(String email, String password) async {
-    return _authenticate(email, password, false);
+    await _authenticate(email, password, false);
   }
 
   Future<void> login(String email, String password) async {
-    return _authenticate(email, password, true);
+    await _authenticate(email, password, true);
   }
 
   Future<void> logout() async {
